@@ -92,6 +92,7 @@ class Storage(object):
         # sqlite connection
         try:
             self._conn = sqlite3.connect(database)
+            self._conn.text_factory = str
         except sqlite3.OperationalError, err:
             raise RuntimeError("%s, database: %s" % (err, database))
         self._conn.row_factory = self._dict_factory
